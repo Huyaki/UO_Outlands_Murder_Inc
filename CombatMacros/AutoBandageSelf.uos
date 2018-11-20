@@ -1,13 +1,14 @@
-while not dead
-  if not timerexists 'Bandage Timer'
-    createtimer 'Bandage Timer'
-    settimer 'Bandage Timer' 14250
-  endif
-  if timer 'Bandage Timer' < 14250
-    pause 100
-  endif
-  if poisoned 'self' or hits < maxhits
-    bandageself
-    settimer 'Bandage Timer' 0
-  endif
-endwhile
+if not timerexists 'bt'
+  createtimer 'bt'
+  settimer 'bt' 14250
+endif
+if timer 'bt' < 14250
+  while timer 'bt' < 14250
+    pause 500
+  endwhile
+endif
+if poisoned 'self' or hits < maxhits
+  bandageself
+  settimer 'bt' 0
+endif
+pause 200
