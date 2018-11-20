@@ -1,0 +1,9 @@
+if @findlayer 'self' 2
+  togglehands 'left'
+  pause 600
+  usetype! 0xf0c
+  pause 600
+  togglehands 'left'
+else
+  usetype! 0xf0c
+endif

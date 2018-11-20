@@ -1,0 +1,39 @@
+settimer '5xbuff' 0
+while skill 'magery' < 100
+  if mana < 11
+    pause 500
+    clearjournal
+    while not @injournal 'You enter' "system"
+      useskill 'meditation'
+      pause 10500
+    endwhile
+    while mana < maxmana
+    endwhile
+  elseif timer '5xbuff' < 600000
+    if hits < 60
+      cast 'greater heal' 'self'
+      pause 1000
+    elseif skill 'magery' < 60
+      cast 'lightning' 'self'
+      pause 1000
+    elseif skill 'magery' < 70
+      cast 'mind blast' 'self'
+      pause 1000
+    elseif skill 'magery' < 80
+      cast 'energy bolt' 'self'
+      pause 1000
+    elseif skill 'magery' < 90
+      cast 'flamestrike' 'self'
+      pause 1000
+    elseif skill 'magery' < 100
+      cast 'summon air elemental' 'self'
+      pause 3000
+    else
+      headmsg 'Magery complete!'
+      stop
+    endif
+  else
+    headmsg 'Restart the script after you kill something!'
+    stop
+  endif
+endwhile
