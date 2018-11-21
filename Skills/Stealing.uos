@@ -1,0 +1,36 @@
+//Macro will steal from pack animal and snoop another player
+//-steal_object - target object to steal (dye tub)
+//-move_object - target pack animal to place item in
+//-change line 34 id to which char you are snooping
+if not @findalias 'steal_object'
+  headmsg '[What do you want to steal]' 88
+  promptalias 'steal_object'
+endif
+if not @findalias 'move_object'
+  headmsg '[Choose move location]' 89
+  promptalias 'move_object'
+endif
+// used timers so didnt have pause delays
+if not timerexists 'steal_t'
+  createtimer 'steal_t'
+endif
+if not timerexists 'snoop_t'
+  createtimer 'snoop_t'
+endif
+while not dead 'self'
+  if timer 'steal_t' >= 10000
+    useskill 'Stealing'
+    waitfortarget 15000
+    target! 'steal_object'
+    settimer 'steal_t' 0
+  endif
+  if @findtype  '0xfab' 'any' 'backpack'
+    movetype '0xfab' 'backpack' 'move_object'
+    pause 600
+  endif
+  if timer 'snoop_t' >= 2500
+    // for snooping i just recorded doubleclicking the other chars bag i'll edit this to be any target
+    useobject 0x40420697
+    settimer 'snoop_t' 0
+  endif
+endwhile
