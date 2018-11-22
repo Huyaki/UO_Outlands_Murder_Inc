@@ -1,14 +1,19 @@
-if mana < maxmana
-  useskill 'meditation'
-  while mana < maxmana
+createtimer 'Buff'
+settimer 'Buff' 0
+while timer 'Buff' < 550000
+  if mana < maxmana
+    useskill 'meditation'
+    while mana < maxmana
+      pause 500
+    endwhile
+  endif
+  cast 'summon water elemental'
+  pause 5000
+  if findtype 0x10 'any' 'ground' 'any' '8'
+    msg 'all release' 0
     pause 500
-  endwhile
-endif
-cast 'summon water elemental'
-pause 5000
-if findtype 0x10 'any' 'ground' 'any' '8'
-  cast 'dispel'
-  waitfortarget 10000
-  targettype 0x10
-  pause 500
-endif
+    replygump 0x3780b38e 1
+    pause 500
+  endif
+endwhile
+messagebox 'Warning' 'Active Bonus gone, need to kill a creature'
