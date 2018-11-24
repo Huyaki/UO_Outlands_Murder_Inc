@@ -1,0 +1,17 @@
+// you or your partner needs to have 'heater shield' in the backpack
+// this script is for a persion who is training stealing
+// partner has got another script 'stealing assistant'
+//
+// this script is stealing heater shield from assistant character,
+// and drops it to the ground
+
+promptalias 'target'
+while not dead
+  useskill 'stealing'
+  waitingfortarget 4000
+  @findtype 0x1b77 'any' 'target' 1 5
+  target 'found' 2000
+  pause 3000
+  movetypeoffset 0x1b77 'backpack' 'ground' 0 0 0 'any' 1 5
+  pause 10000
+endwhile

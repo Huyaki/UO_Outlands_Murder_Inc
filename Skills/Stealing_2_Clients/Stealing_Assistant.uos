@@ -1,0 +1,7 @@
+// this script should be run on 2nd (assistant) character
+// this script is picking shields from the ground to characters backpack
+
+while not dead
+  movetype 0x1b77 'ground' 'backpack' 0 0 0
+  pause 500
+endwhile
